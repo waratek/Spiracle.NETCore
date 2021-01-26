@@ -1,0 +1,64 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+!yaml-cpp*.lib
+!libyaml-cpp*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.suo
+.vs/
+Debug/
+Release/
+obj/
+bin/
+packages/
+*.csproj.user
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+!**/VCRuntime/*.dll
+!**/VCRuntime/**/*.dll
+!**/VCRuntime/**/Debug/
+!**/VCRuntime/**/Debug/*.dll
+
+# Generated files
+**/DotNetProfiler.h
+**/DotNetProfiler_i.c
+**/DotNetProfiler_p.c
+**/VerifyWaratek.ps1
+**/Versions.txt
+**/Waratek.PInvoke.Api/AgentInterop.cs
+**/Waratek.Global/ConfigHelper.cs
+**/VersioningTool/Program.cs
+**/RuleProcessors/ArmrPatchRuleProcessor.cs
+**/YamlConfigurer.cs
+
+*.log
+*.binlog
