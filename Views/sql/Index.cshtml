@@ -1,0 +1,125 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<html>
+    <head><title>
+        Spiracle.NETCore - SQL
+    </title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>SQL Injection</h1>
+
+            <div class="card">
+            <div class="card-header">Injectable URLS</div>
+            <div class="card-body">
+                <h3>MsSQL</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Request</th>
+                            <th>SQL Statement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="sql/MsSql_Get_int?id=1">MsSql_Get_int?id=1</a></td>
+                            <td><code>"SELECT * FROM users WHERE id = '" + id + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/MsSql_Get_int?id=1' or '1'='1">MsSql_Get_int?id=1' or '1'='1</a></td>
+                            <td><code>"SELECT * FROM users WHERE id = " + id + " or id = id;</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/MsSql_Get_string?name=wu">MsSql_Get_string?name=wu</a></td>
+                            <td><code>"SELECT * FROM users WHERE name = '" + name + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/MsSql_Get_string_param_question_mark?name=wu">MsSql_Get_string_param_question_mark?name=wu</a></td>
+                            <td><code>"SELECT top 5 id, name, surname FROM users where name <> '?' and name = '" + name + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/MsSql_Get_Union?id=1">MsSql_Get_Union?id=1</a></td>
+                            <td><code>"SELECT name, surname, CONVERT(varchar(500), dod, 3)dob FROM users WHERE
+                                        id = " + id + " UNION SELECT address_1, address_2, address_3
+                                        FROM address WHERE id = " + id;</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/MsSql_Get_Implicit_Join?id=1">MsSql_Get_Implicit_Join?id=1</a></td>
+                            <td><code>"SELECT * FROM users, address WHERE
+                                        users.id = " + id + " AND users.id = address.id";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/MsSql_Implicit_Join_Namespace?id=1">MsSql_Implicit_Join_Namespace?id=1</a></td>
+                            <td><code>"SELECT * FROM dbo.users, dbo.address WHERE
+                                        dbo.users.id = " + id + " AND dbo.users.id = dbo.address.id";</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Oracle</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Request</th>
+                            <th>SQL Statement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_int?id=1">Oracle_Get_int?id=1</a></td>
+                            <td><code>"SELECT * FROM users WHERE id = '" + id + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_int?id=1' or '1'='1">Oracle_Get_int?id=1' or '1'='1</a></td>
+                            <td><code>"SELECT * FROM users WHERE id = " + id + " or id = id;</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_int_no_quote?id=1">Oracle_Get_int_no_quote?id=1</a></td>
+                            <td><code>"SELECT * FROM users WHERE id = " + id;";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_int_orderby?id=name">Oracle_Get_int_orderby?id=name</a></td>
+                            <td><code>"SELECT * FROM users ORDER BY '" + id + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_int_inline?id=SELECT * FROM users">Oracle_Get_int_inline?id=SELECT * FROM users</a></td>
+                            <td><code>id;</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_string?name=wu">Oracle_Get_string?name=wu</a></td>
+                            <td><code>"SELECT * FROM users WHERE name = '" + name + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_string_no_quote?name='wu'">Oracle_Get_string_no_quote?name='wu'</a></td>
+                            <td><code>"SELECT * FROM users WHERE name = " + name;</code></td>
+                        </tr>
+
+                        <tr>
+                            <td><a href="sql/Oracle_Get_string_sanitised?name=wu">Oracle_Get_string_sanitised?name=wu</a></td>
+                            <td><code>"SELECT * FROM users WHERE name = '" + name + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_string_param_question_mark?name=wu">Oracle_Get_string_param_question_mark?name=wu</a></td>
+                            <td><code>"SELECT * FROM users where name <> '?' and name = '" + name + "'";</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="sql/Oracle_Get_Implicit_Join?id=1">Oracle_Get_Implicit_Join?id=1</a></td>
+                            <td><code>"SELECT * FROM users, address WHERE users.id = " + id + " AND users.id = address.id";</code></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Bootstrap core JavaScript ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>

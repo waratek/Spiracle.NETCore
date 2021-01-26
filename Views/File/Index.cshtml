@@ -1,0 +1,61 @@
+@model Spiracle.NETCore.Models.FileModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    <div>  
+    <form method="post" id="ctl00">
+
+        <div class="container">
+
+        <div class="card">
+        <div class="card-header">
+            Process forking
+        </div>
+        <div class="card-body">
+            @Html.TextBoxFor(m => m.Command, new {@id="MainContent_processInput", @placeholder="Enter Command..."})
+            <input class="btn btn-info" type="submit" formaction="/file/ExecuteProcess" name="ctl00$MainContent$btnProcessExecute" value="Execute" id="MainContent_btnProcessExecute" />
+        </div>
+        </div>
+        <br>
+
+        <div class="card">
+        <div class="card-header">
+            File
+        </div>
+        <div class="card-body">
+            Path:
+            @Html.TextBoxFor(m => m.PathInput, new {@id="MainContent_filePath"})
+            
+            <br>
+                @foreach (var operation in Model.OperationList)
+                {
+                    <div>
+                        @Html.RadioButtonFor(model => model.Operation, new { id = "MainContent_file" + operation })
+                        @Html.Label(operation)
+                    </div>
+                }
+            <input class="btn btn-info" type="submit" formaction="/file/ReadWriteOrDeleteFile" name="ctl00$MainContent$btnFileSubmit" value="Submit" id="MainContent_btnFileSubmit" />
+        </div>
+        </div>
+        <br>
+
+        <div class="card-footer">
+            Output
+            <textarea name="ctl00$MainContent$output" rows="2" cols="20" id="MainContent_output" style="height:20em;width:100%;"> 
+            @Model.TextData</textarea>
+        </div>
+           
+        </div>
+    </form>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    </body>
+</html>
