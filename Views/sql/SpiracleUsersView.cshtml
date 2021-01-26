@@ -1,0 +1,29 @@
+@model Spiracle.NETCore.Models.SqlModel
+
+@{
+    ViewData["Title"] = "Spiracle Users";
+}
+
+<html>
+    <body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">SQL Query:</div>
+            <div class="card-body"><pre><span id="MainContent_sqlQuery">@Model.SqlQueryString</span></pre></div>
+        </div>
+        
+        <br/>
+        <h1>Results:</h1>
+        <div>
+            <table class="table table-bordered table-striped" cellspacing="0" rules="all" border="1" id="MainContent_users" style="border-collapse:collapse;">
+                <tr><th scope="col">id</th><th scope="col">name</th><th scope="col">surname</th><th scope="col">dob</th><th scope="col">credit_card</th><th scope="col">cvv</th></tr>
+                @foreach (var v in Model.SpiracleUsers)
+                {
+                    var dateOfBirth=@v.Dob==DateTime.MinValue? "" : @v.Dob.ToString("dd/MM/yyyy");
+                    <tr><td>@v.Id</td><td>@v.Name</td><td>@v.Surname</td><td>@dateOfBirth</td><td>@v.CreditCard</td><td>@v.Cvv</td></tr>
+                } 
+            </table>
+        </div>
+    </div>
+    </body>
+</html>
