@@ -1,0 +1,58 @@
+@model Spiracle.NETCore.Models.PathTraversalModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    <div>  
+    <form method="post" id="ctl00">
+
+        <div class="container">
+
+        <br>
+
+        <div class="card">
+        <div class="card-header">
+            Path Traversal
+        </div>
+        <div class="card-body">
+            <div>
+                Operation01:
+                @Html.TextBoxFor(m => m.File01, new {@id="File01"})
+                <input class="btn btn-info" type="submit" formaction="/path_traversal/File01" name="File01Button" value="Submit"/>
+                ("../TestFile on Linux   or   ..\TestFile on Windows")
+            </div>
+
+            <div>
+                Operation02:
+                @Html.TextBoxFor(m => m.File02, new {@id="File02"})
+                <input class="btn btn-info" type="submit" formaction="/path_traversal/File02" name="File02Button" value="Submit"/>
+            </div>
+        
+            <div>
+                Operation03:
+                @Html.TextBoxFor(m => m.File03, new {@id="File03"})
+                <input class="btn btn-info" type="submit" formaction="/path_traversal/File03" name="File03Button" value="Submit"/>
+            </div>
+        </div>
+        </div>
+        <br>
+           
+        </div>
+    </form>
+
+    </div>
+
+        <div class="card-footer">
+            Output
+            <textarea rows="2" cols="20" id="MainContent_output" style="height:20em;width:100%;"> 
+            @Model.OutputText</textarea>
+        </div>
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    </body>
+</html>
