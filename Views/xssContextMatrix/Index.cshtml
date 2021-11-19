@@ -1,0 +1,28 @@
+@model Spiracle.NETCore.Models.XssContextMatrixModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Request Query String Parameters</div>
+        </div>
+            
+        <div>
+            <table class="table table-bordered" cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+                <tr><td>@Html.Raw("testcase: " + Model.Testcase)</td></tr>
+                <tr><td>@Html.Raw("singlePrint: " + Model.SinglePrint)</td></tr>
+                <tr><td>@Html.Raw(Model.TestcaseLabel)</td></tr>
+                <tr><td>@Html.Raw(Model.OutputText)</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    </body>
+</html>
