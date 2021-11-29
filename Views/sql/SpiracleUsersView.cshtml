@@ -20,7 +20,7 @@
                 @foreach (var v in Model.SpiracleUsers)
                 {
                     var dateOfBirth=@v.Dob==DateTime.MinValue? "" : @v.Dob.ToString("dd/MM/yyyy");
-                    <tr><td>@v.Id</td><td>@v.Name</td><td>@v.Surname</td><td>@dateOfBirth</td><td>@v.CreditCard</td><td>@v.Cvv</td></tr>
+                    <tr><td>@v.Id</td><td>@Html.Raw(""+v.Name)</td><td>@v.Surname</td><td>@dateOfBirth</td><td>@v.CreditCard</td><td>@v.Cvv</td></tr>
                 } 
             </table>
         </div>

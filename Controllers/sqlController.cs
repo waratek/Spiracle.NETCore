@@ -87,6 +87,19 @@ namespace Spiracle.NETCore.Controllers
             return View("SpiracleUsersView", new SqlModel(ExecuteMsSqlQuery(sqlQueryString), sqlQueryString));
         }
 
+        public String MsSql_UpdateUser99NameWithXSSExploitContent()
+        {
+            string sqlQueryString = "UPDATE dbo.users SET dbo.users.name = '<script>alert(\"attack\")</script>' WHERE id = '99'";
+            ExecuteMsSqlQuery(sqlQueryString);
+            return "SQL Query executed: " + sqlQueryString;
+        }
+
+        public String MsSql_UpdateUser99NameWithOriginalNameEmilio()
+        {
+            string sqlQueryString = "UPDATE dbo.users SET dbo.users.name = 'Emilio' WHERE id = '99'";
+            ExecuteMsSqlQuery(sqlQueryString);
+            return "SQL Query executed: " + sqlQueryString;
+        }
 
         public IActionResult Oracle_Get_int()
         {
@@ -186,6 +199,20 @@ namespace Spiracle.NETCore.Controllers
             var newName = ((string)name).Replace("'", "''");
             string sqlQueryString = "select * from users where name = '" + newName + "'";
             return View("SpiracleUsersView", new SqlModel(ExecuteOracleQuery(sqlQueryString), sqlQueryString));
+        }
+
+        public String Oracle_UpdateUser99NameWithXSSExploitContent()
+        {
+            string sqlQueryString = "update users set users.name = '<script>alert(\"attack\")</script>' where users.id = 99";
+            ExecuteOracleQuery(sqlQueryString);
+            return "Oracle SQL Query executed: " + sqlQueryString;
+        }
+
+        public String Oracle_UpdateUser99NameWithOriginalNameEmilio()
+        {
+            string sqlQueryString = "update users set users.name = 'Emilio' where users.id = 99";
+            ExecuteOracleQuery(sqlQueryString);
+            return "Oracle SQL Query executed: " + sqlQueryString;
         }
 
         private List<SpiracleUser> ExecuteMsSqlQuery(string sqlQueryString)
