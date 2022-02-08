@@ -1,0 +1,61 @@
+@model Spiracle.NETCore.Models.SocketModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    <div>  
+    <form method="post" id="ctl00">
+
+        <div class="container">
+
+        <div class="card">
+        <div class="card-header">
+            Client Socket
+        </div>
+        <div class="card-body">
+            @Html.TextBoxFor(m => m.ServerIP, new {@id="MainContent_connectInput", @placeholder="Connect to Server IP (IPv4)"}) 
+            @Html.TextBoxFor(m => m.ServerPort, new {@id="MainContent_connectInputPort", @placeholder="Connect to Server Port"})
+            <input class="btn btn-info" type="submit" formaction="/socket/ConnectToServer" name="ctl00$MainContent$btnConnectToServer" value="Connect" id="MainContent_btnConnectToServer" />
+        </div>
+        </div>
+        
+        <div class="card-footer">
+            Client Socket Output
+            <textarea name="ctl00$MainContent$output" rows="2" cols="20" id="MainContent_output" style="height:11em;width:100%;"> 
+            @Model.TextData</textarea>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="card">
+        <div class="card-header">
+            Server Socket
+        </div>
+        <div class="card-body">
+            @Html.TextBoxFor(m => m.LocalServerListeningPort, new {@id="MainContent_socketPort", @placeholder="Listen on port"})
+            <input class="btn btn-info" type="submit" formaction="/socket/StartServer" name="ctl00$MainContent$btnStartServer" value="Start Server Socket" id="MainContent_btnStartServer" />
+        </div>
+        </div>
+
+        <div class="card-footer">
+            Server Socket Output
+            <textarea name="ctl00$MainContent$outputServer" rows="2" cols="20" id="MainContent_outputServer" style="height:14em;width:100%;">
+                    @Model.TextDataServer</textarea>
+        </div>
+
+        <br>
+           
+        </div>
+    </form>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    </body>
+</html>
