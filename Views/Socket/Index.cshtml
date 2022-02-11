@@ -36,6 +36,7 @@
             Server Socket
         </div>
         <div class="card-body">
+            @Html.TextBoxFor(m => m.LocalServerListeningIP, new {@id="MainContent_socketIP", @placeholder="Server IP (IPv4)"})
             @Html.TextBoxFor(m => m.LocalServerListeningPort, new {@id="MainContent_socketPort", @placeholder="Listen on port"})
             <input class="btn btn-info" type="submit" formaction="/socket/StartServer" name="ctl00$MainContent$btnStartServer" value="Start Server Socket" id="MainContent_btnStartServer" />
         </div>
