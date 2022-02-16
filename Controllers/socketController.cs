@@ -29,8 +29,7 @@ namespace Spiracle.NETCore.Controllers
 
             try
             {
-                IPHostEntry ipHostInfo = Dns.GetHostEntry(serverIP);  
-                IPAddress ipAddress = ipHostInfo.AddressList[0];
+                IPAddress ipAddress = IPAddress.Parse(serverIP);
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, Int32.Parse(remotePort));   
                 sender = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 sender.Connect(remoteEP);  
@@ -56,12 +55,12 @@ namespace Spiracle.NETCore.Controllers
         public IActionResult StartServer(SocketModel socketModel)
         {
             string result = "";
+            string localServerListeningIP = socketModel.LocalServerListeningIP;
             string localServerListeningPort = socketModel.LocalServerListeningPort;
             
             try
             {
-                IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());  
-                IPAddress ipAddress = ipHostInfo.AddressList[0];  
+                IPAddress ipAddress = IPAddress.Parse(localServerListeningIP);
                 IPEndPoint localEndPoint = new IPEndPoint(ipAddress, Int32.Parse(localServerListeningPort));  
                 Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);  
     
