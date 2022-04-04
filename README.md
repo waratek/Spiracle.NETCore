@@ -16,6 +16,6 @@ $ dotnet run
 Home page: http://localhost:5000/
 
 
-Spiracle.NETCore/Spiracle.NETCore.csproj is configured to run with .NET 5.0 by default.  
+Since Monday, 4 April 2022, Spiracle.NETCore/Spiracle.NETCore.csproj is configured to run with .NET 6.0 by default.  
 To run Spiracle.NETCore on another .NET Core version, edit TargetFramework in Spiracle.NETCore.csproj accordingly.  
 
