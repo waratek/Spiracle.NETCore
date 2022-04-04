@@ -1,0 +1,41 @@
+﻿@model Spiracle.NETCore.Models.DnsModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+<div>  
+    <form method="post" id="ctl00">
+
+        <div class="container">
+
+            <div class="card">
+                <div class="card-header">
+                    Host Name Lookup
+                </div>
+                <div class="card-body">
+                    @Html.TextBoxFor(m => m.HostNameOrIpAddress, new { @id = "MainContent_connectInput", @placeholder = "Host name or IP Address" })
+                    <input class="btn btn-info" type="submit" formaction="/dns/GetHostEntry" name="ctl00$MainContent$btnGetHostEntry" value="Look Up Host" id="MainContent_btnGetHostEntry"/>
+                    <input class="btn btn-info" type="submit" formaction="/dns/GetHostEntryAsync" name="ctl00$MainContent$btnGetHostEntryAsync" value="Look Up Host Async" id="MainContent_btnGetHostEntryAsync"/>
+                    <input class="btn btn-info" type="submit" formaction="/dns/GetHostEntryIpAddress" name="ctl00$MainContent$btnGetHostEntryIpAddress" value="Look Up IP Address" id="MainContent_btnGetHostEntryIpAddress"/>
+                    <input class="btn btn-info" type="submit" formaction="/dns/GetHostEntryIpAddressAsync" name="ctl00$MainContent$btnGetHostEntryIpAddressAsync" value="Look Up IP Address Async" id="MainContent_btnGetHostEntryIpAddressAsync"/>
+                </div>
+            </div>
+                
+            <div class="card-footer">
+                IP Addresses
+                <textarea name="ctl00$MainContent$output" rows="2" cols="20" id="MainContent_output" style="height:11em;width:100%;"> 
+                    @Model.LookupResult</textarea>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!-- Bootstrap core JavaScript ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+</body>
+</html>
