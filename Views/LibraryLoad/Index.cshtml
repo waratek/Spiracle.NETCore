@@ -1,0 +1,49 @@
+﻿@model Spiracle.NETCore.Models.LibraryLoadModel
+
+@{
+    ViewData["Title"] = "Library load";
+}
+
+<html>
+<body>
+    <div>
+        <form method="post" id="ctl00">
+
+            <div class="container">
+
+                <div class="card">
+                    <div class="card-header">
+                        Library Load
+                    </div>
+                    <div class="card-body">
+                        Library name: @Html.TextBoxFor(m => m.LibraryName, new {@id="MainContent_libraryName", @value=Model.LibraryName, @style="width:100%;"})
+                        <br>
+                        <br>
+                        Library load method:
+                        @foreach (var loadMethod in Model.LoadMethods)
+                        {
+                            <div>
+                                @Html.RadioButtonFor(model => model.SelectedLibraryLoadMethod, loadMethod, loadMethod == Model.SelectedLibraryLoadMethod ? new {@id="MainContent_loadMethod_"+loadMethod, @checked = "checked" } : new {@id="MainContent_loadMethod_"+loadMethod})
+                                @Html.Label(loadMethod)
+                            </div>
+                        }
+                        <input class="btn btn-info" type="submit" formaction="/libraryLoad/load" name="ctl00$MainContent$btnLibraryLoadSubmit" value="Submit" id="MainContent_btnLibraryLoadSubmit" />
+                    </div>
+                </div>
+                <br>
+
+                <div class="card-footer">
+                    Output
+                    <textarea name="ctl00$MainContent$output" rows="2" cols="20" id="MainContent_output" style="height:20em;width:100%;">@Model.OperationResult</textarea>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+</body>
+</html>
